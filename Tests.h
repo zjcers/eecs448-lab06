@@ -4,6 +4,7 @@
  * Tests the provided LinkedListOfInts
  */
 #pragma once
+#include <string>
 #include "LinkedListOfInts.h"
 
 class Tests {
@@ -34,5 +35,6 @@ protected:
 private:
 	//Disallow creating an instance of Tests externally
 	Tests(void);
+	static void DoTest(const std::string& name, bool (Tests::* testCase)(void));
 	LinkedListOfInts list;
 };
