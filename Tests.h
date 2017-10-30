@@ -4,13 +4,35 @@
  * Tests the provided LinkedListOfInts
  */
 #pragma once
+#include "LinkedListOfInts.h"
 
 class Tests {
 public:
 	static void all(void);
 protected:
 	//List test cases here
+	bool IsEmptyByDefault(void);
+	bool AddOneItemToFrontOfEmptyMakesisEmptyReturnFalse(void);
+        bool AddOneItemToFrontOfEmptyMakessizeReturnOne(void);
+	bool AddOneItemToBackOfEmptyMakesisEmptyReturnFalse(void);
+        bool AddOneItemToBackOfEmptyMakessizeReturnOne(void);
+	bool AddTenItemsToFrontMakessizeReturnTen(void);
+        bool AddTenItemsToFrontReturnsCorrectVector(void);
+	bool AddTenItemsToBackMakesizeReturnTen(void);
+        bool AddTenItemsToBackReturnsCorrectVector(void);
+	bool AddTenItemsAlternatingReturnsCorrectVector(void);
+	bool AddTwoThousandItemsToFrontReturnsCorrectVector(void);
+	bool AddAndRemoveTenItemsFrontMakessizeReturnZero(void);
+	bool AddAndRemoveTenItemsBackMakessizeReturnZero(void);
+	bool AddTenItemsFrontRemoveBackMakessizeReturnZero(void);
+	bool AddTenItemsBackRemoveFrontMakessizeReturnZero(void);
+	bool CannotFindItemInEmptyList(void);
+	bool CannotFindItemInNonEmptyList(void);
+	bool CanFindItemInNonEmptyList(void);
+	bool CannotFindItemAfterRemoveFromFront(void);
+        bool CannotFindItemAfterRemoveFromBack(void);
 private:
-	//Disallow creating an instance of Tests
+	//Disallow creating an instance of Tests externally
 	Tests(void);
+	LinkedListOfInts list;
 };
