@@ -7,10 +7,10 @@
 
 class Tests {
 public:
-    void all(void);
+	static void all(void);
 protected:
-    //List test cases here
+	//List test cases here
 private:
-    //Disallow creating an instance of Tests
-    Tests(void);
+	//Disallow creating an instance of Tests
+	Tests(void);
 };

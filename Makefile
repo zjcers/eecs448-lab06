@@ -1,7 +1,7 @@
 #Zane J Cersovsky 2017
 
 prog: main.o Tests.o
-	g++ -g -Wall -std=c++11 main.o LinkedListOfInts.o -o prog
+	g++ -g -Wall -std=c++11 main.o LinkedListOfInts.o Tests.o -o prog
 
 
 %.o: %.cpp 
