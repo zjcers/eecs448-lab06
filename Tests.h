@@ -13,6 +13,7 @@ public:
 protected:
 	//List test cases here
 	bool IsEmptyByDefault(void);
+	bool SizeReturnsZeroByDefault(void);
 	bool AddOneItemToFrontOfEmptyMakesisEmptyReturnFalse(void);
         bool AddOneItemToFrontOfEmptyMakessizeReturnOne(void);
 	bool AddOneItemToBackOfEmptyMakesisEmptyReturnFalse(void);

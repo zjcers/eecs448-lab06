@@ -12,7 +12,14 @@
  */
 void Tests::all(void)
 {
+	DoTest("IsEmptyByDefault", &Tests::IsEmptyByDefault);
 }
+//Tests that isEmpty() returns true by default
+bool Tests::IsEmptyByDefault(void)
+{
+	return list.isEmpty();
+}
+
 void Tests::DoTest(const std::string& name, bool (Tests::* testCase)(void))
 {
 	std::cout << "Running [" << name << "]: ";
