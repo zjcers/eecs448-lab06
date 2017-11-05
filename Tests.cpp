@@ -23,7 +23,20 @@ void Tests::all(void)
 	DoTest("AddTenItemsToBackMakesizeReturnTen", &Tests::AddTenItemsToBackMakesizeReturnTen);
 	DoTest("AddTenItemsToBackReturnsCorrectVector", &Tests::AddTenItemsToBackReturnsCorrectVector);
 	DoTest("AddTenItemsAlternatingReturnsCorrectVector", &Tests::AddTenItemsAlternatingReturnsCorrectVector);
-	DoTest("AddTwoMillionItemsToFrontReturnsCorrectVector", &Tests::AddTwoMillionItemsToFrontReturnsCorrectVector);	
+	DoTest("AddTwoMillionItemsToFrontReturnsCorrectVector", &Tests::AddTwoMillionItemsToFrontReturnsCorrectVector);
+	DoTest("AddAndRemoveTenItemsFrontMakessizeReturnZero", &Tests::AddAndRemoveTenItemsFrontMakessizeReturnZero);
+	DoTest("AddAndRemoveTenItemsBackMakessizeReturnZero", &Tests::AddAndRemoveTenItemsBackMakessizeReturnZero);
+	DoTest("AddTenItemsFrontRemoveBackMakessizeReturnZero", &Tests::AddTenItemsFrontRemoveBackMakessizeReturnZero);
+	DoTest("AddTenItemsBackRemoveFrontMakessizeReturnZero", &Tests::AddTenItemsBackRemoveFrontMakessizeReturnZero);
+	DoTest("CannotFindItemInEmptyList", &Tests::CannotFindItemInEmptyList);
+	DoTest("CannotFindItemInNonEmptyList", &Tests::CannotFindItemInNonEmptyList);
+	DoTest("CanFindItemInNonEmptyList", &Tests::CanFindItemInNonEmptyList);
+	DoTest("CannotFindItemAfterRemoveFromFront", &Tests::CannotFindItemAfterRemoveFromFront);
+	DoTest("CannotFindItemAfterRemoveFromBack", &Tests::CannotFindItemAfterRemoveFromBack);
+	DoTest("RemoveFrontMakesEmptyVector", &Tests::RemoveFrontMakesEmptyVector);
+	DoTest("RemoveBackMakesEmptyVector", &Tests::RemoveBackMakesEmptyVector);
+	DoTest("RemoveFrontReturnsTrueNonEmptyList", &Tests::RemoveFrontReturnsTrueNonEmptyList);	
+	
 }
 //Tests that isEmpty() returns true by default
 bool Tests::IsEmptyByDefault(void)
@@ -99,16 +112,6 @@ bool Tests::AddTenItemsAlternatingReturnsCorrectVector(void)
 	std::vector<int> actual = list.toVector();
 	return actual == expected;
 }
-bool Tests::AddTwoThousandItemsToFrontReturnsCorrectVector(void)
-{
-	std::vector<int> expected;
-	for (int i = 0; i < 2000000; i++) {
-		list.addFront(i);
-		expected.push_back(2000000 - (i+1)); // hack since std::vector can only be added to from the back
-	}
-	std::vector<int> actual = list.toVector();
-	return actual == expected;
-}
 bool Tests::AddTwoMillionItemsToFrontReturnsCorrectVector(void)
 {
 	std::vector<int> expected;
@@ -121,41 +124,103 @@ bool Tests::AddTwoMillionItemsToFrontReturnsCorrectVector(void)
 }
 bool Tests::AddAndRemoveTenItemsFrontMakessizeReturnZero(void)
 {
-	return false;
+	for (int i=0; i<10; i++)
+		list.addFront(i);
+	for (int i=0; i<10; i++)
+		list.removeFront();
+	int actual = list.size();
+	return actual == 0;
 }
 bool Tests::AddAndRemoveTenItemsBackMakessizeReturnZero(void)
 {
-	return false;
+	for (int i=0; i<10; i++)
+		list.addBack(i);
+	for (int i=0; i<10; i++)
+		list.removeBack();
+	int actual = list.size();
+	return actual == 0;
 }
 bool Tests::AddTenItemsFrontRemoveBackMakessizeReturnZero(void)
 {
-	return false;
+	for (int i=0; i<10; i++)
+		list.addFront(i);
+	for (int i=0; i<10; i++)
+		list.removeBack();
+	int actual = list.size();
+	return actual == 0;
 }
 bool Tests::AddTenItemsBackRemoveFrontMakessizeReturnZero(void)
 {
-	return false;
+	for (int i=0; i<10; i++)
+		list.addBack(i);
+	for (int i=0; i<10; i++)
+		list.removeFront();
+	int actual = list.size();
+	return actual == 0;
 }
 bool Tests::CannotFindItemInEmptyList(void)
 {
-	return false;
+	bool actual = list.search(1);
+	return actual == false;
 }
 bool Tests::CannotFindItemInNonEmptyList(void)
 {
-	return false;
+	for (int i=0; i<10; i++)
+		list.addFront(i);
+	bool actual = list.search(-1);
+	return actual == false;
 }
 bool Tests::CanFindItemInNonEmptyList(void)
 {
-	return false;
+	for (int i=0; i<10; i++)
+		list.addFront(i);
+	bool actual = list.search(5);
+	return actual == true;
 }
 bool Tests::CannotFindItemAfterRemoveFromFront(void)
 {
-	return false;
+	for (int i=0; i<10; i++)
+		list.addFront(i);
+	list.removeFront();
+	bool actual = list.search(9);
+	return actual == false;
 }
 bool Tests::CannotFindItemAfterRemoveFromBack(void)
 {
-	return false;
+	for (int i=0; i<10; i++)
+		list.addFront(i);
+	list.removeBack();
+	bool actual = list.search(0);
+	return actual == false;
 }
-
+bool Tests::RemoveBackMakesEmptyVector(void)
+{
+	for (int i=0; i<10; i++)
+		list.addBack(i);
+	std::vector<int> beforeRemove = list.toVector();	
+	for (int i=0; i<10; i++)
+		list.removeBack();
+	std::vector<int> expected = {};
+	std::vector<int> actual = list.toVector();
+	return actual == expected;
+}
+bool Tests::RemoveFrontMakesEmptyVector(void)
+{
+	for (int i=0; i<10; i++)
+		list.addBack(i);
+	for (int i=0; i<10; i++)
+		list.removeFront();
+	std::vector<int> expected = {};
+	std::vector<int> actual = list.toVector();
+	return actual == expected;
+}
+bool Tests::RemoveFrontReturnsTrueNonEmptyList(void)
+{
+	for (int i=0; i<10; i++)
+		list.addBack(i);
+	bool actual = list.removeFront();
+	return actual == true;
+}
 void Tests::DoTest(const std::string& name, bool (Tests::* testCase)(void))
 {
 	std::cout << "Running [" << name << "]: ";
