@@ -23,11 +23,14 @@ protected:
 	bool AddTenItemsToBackMakesizeReturnTen(void);
         bool AddTenItemsToBackReturnsCorrectVector(void);
 	bool AddTenItemsAlternatingReturnsCorrectVector(void);
-	bool AddTwoThousandItemsToFrontReturnsCorrectVector(void);
+	bool AddTwoMillionItemsToFrontReturnsCorrectVector(void);
 	bool AddAndRemoveTenItemsFrontMakessizeReturnZero(void);
 	bool AddAndRemoveTenItemsBackMakessizeReturnZero(void);
 	bool AddTenItemsFrontRemoveBackMakessizeReturnZero(void);
 	bool AddTenItemsBackRemoveFrontMakessizeReturnZero(void);
+	bool RemoveFrontMakesEmptyVector(void);
+	bool RemoveBackMakesEmptyVector(void);
+	bool RemoveFrontReturnsTrueNonEmptyList(void);
 	bool CannotFindItemInEmptyList(void);
 	bool CannotFindItemInNonEmptyList(void);
 	bool CanFindItemInNonEmptyList(void);
