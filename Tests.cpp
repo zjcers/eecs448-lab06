@@ -55,7 +55,7 @@ bool Tests::AddOneItemToFrontOfEmptyMakesisEmptyReturnFalse(void)
 bool Tests::AddOneItemToFrontOfEmptyMakessizeReturnOne(void)
 {
 	list.addFront(1);
-	return list.isEmpty() == 1;
+	return list.size() == 1;
 }
 bool Tests::AddOneItemToBackOfEmptyMakesisEmptyReturnFalse(void)
 {
