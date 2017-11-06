@@ -1,2 +1,3 @@
-*.o
+Tests.o
+main.o
 prog
